@@ -2,22 +2,42 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const bgColor = 'blue';
+
+  const nombre = 'Juan';
+  const persona = {
+    nombre: 'Juan',
+    apellido: 'Perez',
+    edad: 35,
+    direccion: {
+      ciudad: 'Bogota',
+      zip: 111111,
+    },
+    licenciaturas: ['Sistemas', 'Aeronautica', 'Matematicas']
+  }
+
+  const estiloTitulo = {
+    color: 'red',
+    backgroundColor: bgColor
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+      <figure className='product-card'>
+        <img width="100%" src='https://res.cloudinary.com/sahj/image/upload/v1626912534/samples/ecommerce/shoes.png' />
+        <figcaption>
+          <h1 style={estiloTitulo} >Tenis de color morado</h1>
+          <p>Calzado muy comodo y de buen material</p>
+        </figcaption>
+
+        <h1 style={estiloTitulo}>
+          5 disponibles
+        </h1>
+        <p className={"bigSized "}>
+          $ 1000
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </figure>
     </div>
   );
 }
