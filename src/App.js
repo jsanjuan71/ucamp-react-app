@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import ProductCard from './components/ProductCard/ProductCard';
 
 function App() {
-
-  const bgColor = 'blue';
 
   const nombre = 'Juan';
   const persona = {
@@ -17,27 +16,29 @@ function App() {
     licenciaturas: ['Sistemas', 'Aeronautica', 'Matematicas']
   }
 
-  const estiloTitulo = {
-    color: 'red',
-    backgroundColor: bgColor
-  }
+  
 
   return (
     <div className="App">
-      <figure className='product-card'>
-        <img width="100%" src='https://res.cloudinary.com/sahj/image/upload/v1626912534/samples/ecommerce/shoes.png' />
-        <figcaption>
-          <h1 style={estiloTitulo} >Tenis de color morado</h1>
-          <p>Calzado muy comodo y de buen material</p>
-        </figcaption>
+      <h1>UCamp Store app</h1>
+      <section className='display-flex'>
+        <ProductCard 
+          title="Producto 1" description="Descripcion del producto 1"
+          imageSrc="https://res.cloudinary.com/sahj/image/upload/v1626912538/samples/ecommerce/leather-bag-gray.jpg"
+        />
 
-        <h1 style={estiloTitulo}>
-          5 disponibles
-        </h1>
-        <p className={"bigSized "}>
-          $ 1000
-        </p>
-      </figure>
+        <ProductCard 
+          title="Producto 2"
+          description="Descripcion del producto 2"
+          imageSrc="https://res.cloudinary.com/sahj/image/upload/v1626912536/samples/people/bicycle.jpg"
+        />
+        
+        <ProductCard 
+          title="Producto 3"
+          description="Descripcion del producto 3"
+          imageSrc="https://res.cloudinary.com/sahj/image/upload/v1626912532/samples/food/pot-mussels.jpg"
+        /> 
+      </section>
     </div>
   );
 }
