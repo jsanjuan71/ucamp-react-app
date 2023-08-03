@@ -8,7 +8,7 @@ function ProductCard( props ) {
     }
 
     return (
-        <figure className='product-card'>
+      <figure className='product-card'>
         <img width="100%" src={props.imageSrc} />
         <figcaption>
           <h1 style={estiloTitulo} >{props.title}</h1>
