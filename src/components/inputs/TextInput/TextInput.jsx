@@ -16,13 +16,16 @@ function TextInput( {
     var component = null
 
     if( isTextArea === true ) {
-        component = <textarea value={text} rows={props.rows} onChange={handleChangeText} className="input-w50" ></textarea>
+        component = <textarea placeholder="Escriba aquí" value={text} rows={props.rows} onChange={handleChangeText} className="input-w50" ></textarea>
     } else {
-        component = <input type="text" value={text} onChange={handleChangeText} className="input-w50 input-w3rem" />
+        component = <input type="text" placeholder="Escriba aquí" value={text} onChange={handleChangeText} className="input-w50 input-w3rem" />
     }
 
     return (
         <>
+            <hr />
+            <label>Escriba un texto</label>
+            <br />
             {component}
             <p>Text: {text}</p>
         </>

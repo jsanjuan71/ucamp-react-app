@@ -10,6 +10,9 @@ function RangeInput( {min = 0, max = 100, ...props} ) {
 
     return (
         <>
+        <hr />
+            <label>Seleccione un número de {min} a {max}: </label>
+            <br />
             <input type="range" value={number} min={ min } max={ max } onChange={handleChangeRange} className={props.class} />
             <p>Numero: {number}</p>
         </>
