@@ -1,3 +1,5 @@
+import {Button, Card} from 'react-bootstrap'
+
 
 function ProductCard( props ) {
 
@@ -8,20 +10,14 @@ function ProductCard( props ) {
     }
 
     return (
-      <figure className='product-card'>
-        <img width="100%" src={props.imageSrc} />
-        <figcaption>
-          <h1 style={estiloTitulo} >{props.title}</h1>
-          <p>{props.description}</p>
-        </figcaption>
-
-        <h1 style={estiloTitulo}>
-          5 disponibles
-        </h1>
-        <p className={"bigSized price"}>
-          $ 1000
-        </p>
-      </figure>
+      <Card style={{width: "20%"}}>
+        <Card.Img variant='bottom' src={props.imageSrc}></Card.Img>
+        <Card.Body>
+          <Card.Title>{props.title}</Card.Title>
+          <Card.Text>{props.description}</Card.Text>
+          <Button variant='success' >Agregar</Button>
+        </Card.Body>
+      </Card>
     )
 }
 
