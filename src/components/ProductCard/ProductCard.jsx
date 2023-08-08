@@ -10,7 +10,7 @@ function ProductCard( props ) {
     }
 
     return (
-      <Card style={{width: "20%"}}>
+      <Card style={{width: "100%"}}>
         <Card.Img variant='bottom' src={props.imageSrc}></Card.Img>
         <Card.Body>
           <Card.Title>{props.title}</Card.Title>
