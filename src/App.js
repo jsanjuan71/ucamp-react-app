@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
 import Products from "./components/Products/Products";
+import Patients from "./components/Patients/Patients";
+import Patient from "./components/Patients/Patient";
 
 
 function App() {
@@ -10,10 +12,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={ <Home /> } />
-
         <Route path="/contact" element={ <h1>Contacto</h1> } />
-
         <Route path="/products" element={ <Products />  } />
+
+        {/* Ruta para listar todos los pacientes */}
+        <Route path="/patients" element={ <Patients /> } />
+        {/* Ruta para ver un solo paciente usando su curp */}
+        <Route path="/patients/:curp" element={ <Patient /> } />
 
         <Route path="*" element={ <NotFound /> } />
       </Routes>

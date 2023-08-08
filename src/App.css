@@ -3,6 +3,10 @@
   margin: .5em;
 }
 
+body{
+  margin: 1rem;
+}
+
 .display-flex{
   display: flex;
   justify-content: space-between;

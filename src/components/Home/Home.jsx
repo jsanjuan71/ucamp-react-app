@@ -64,6 +64,8 @@ function Home() {
         <h1>{nombreAlumno} UCamp Store app {currentYear} </h1>
         <button onClick={handleGuttonClick} >Aumentar año</button>
         <hr />
+        <a href='/patients'>VER PACIENTES</a>
+        <hr />
         <section className='display-flex'>
         {productos.map(prod => {
             return(
