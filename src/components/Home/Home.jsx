@@ -6,6 +6,7 @@ import ColorInput from '../inputs/ColorInput/ColorInput';
 import RangeInput from '../inputs/RangeInput/RangeInput';
 import TextInput from '../inputs/TextInput/TextInput';
 import CalendarInput from '../inputs/DateTimePickerInput/CalendarInput';
+import Header from '../Header/Header';
 
 function Home() {
     var nombre = 'Juan';
@@ -61,6 +62,7 @@ function Home() {
     }
    return(
     <div className="App">
+        <Header />
         <h1>{nombreAlumno} UCamp Store app {currentYear} </h1>
         <button onClick={handleGuttonClick} >Aumentar año</button>
         <hr />

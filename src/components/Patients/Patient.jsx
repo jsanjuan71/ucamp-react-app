@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom'
-import {Row, Col, Card} from 'react-bootstrap'
+import { Row, Col, Card } from 'react-bootstrap'
 import { patients } from '../../utils/constants/data'
 import { profilePicture } from '../../utils/constants/media'
 import { FaMapPin, FaArrowCircleLeft } from 'react-icons/fa'
+import PageTitle from '../PageTitle/PageTitle'
 
 {/* Usando el modulo react-router-dom importamos el hook useParams */}
 {/* Importamos la data desde la coleccion de data */}
@@ -18,17 +19,7 @@ function Patient() {
 
     return(
         <>
-            {/* Colocar el boton atras */}
-            <Row>
-                <Col className='d-flex align-items-center'>
-                    <a href='/patients'>
-                        <FaArrowCircleLeft size={32} />
-                    </a>
-                    {" "}
-                    {/* Colocar el encabezado con el CURP */}
-                    <h1 className='text-uppercase'>{curp}</h1>
-                </Col>
-            </Row>
+            <PageTitle title={curp.toUpperCase()} goto='/patients' />
             {/* Colocar la tarjeta con la info del paciente */}
             <Row>
                 <Col md={3}>
