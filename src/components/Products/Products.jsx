@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import {Row, Col} from 'react-bootstrap'
 import ProductCard from '../ProductCard/ProductCard'
 import ProductService from '../../services/products.service'
@@ -10,16 +10,24 @@ function Products() {
 
     const [products, setProducts] = useState( [] )
     
-
-    // Component did mount
+    const navigateTo = useNavigate()
+    
+    {/*** https://legacy.reactjs.org/docs/hooks-effect.html */}
     useEffect( () => {
         ProductService.getAllProducts()
             .then( response => {
                 setProducts( response.data.result )
             })
 
-        //AccountService.getserInfo()
+        return function () {
+            console.log("Se invoca cuando el componente se crea y cuando se destruye")
+            console.log("Es usada para limpiar estados anteriores o antes de salir del componente, veremos ejemplos practicos despues")
+        }
     }, [] )
+
+    const handleClickOnProduct = (id) => {
+        navigateTo( "/products/" + id )
+    }
 
     return(
         <>
@@ -28,7 +36,7 @@ function Products() {
             <Row>
                 {products.map( (prod, index) => {
                     return (
-                        <Col lg={3} md={4} xs={12}>
+                        <Col lg={3} md={4} xs={12} key={index} onClick={() => handleClickOnProduct(prod.id) }>
                             <ProductCard
                                 position={index}
                                 {...prod}

@@ -19,7 +19,7 @@ class ProductService {
     // creamos la accion para visitar el endpoint POST para crear un producto
     static async createProduct(data) {
         return await axios.post( API_URL + resource + "/", data )
-        // http://localhost:3001/products/sku1212
+        // http://localhost:3001/products/
     }
 }
 
