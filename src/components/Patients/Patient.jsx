@@ -13,7 +13,7 @@ import PageTitle from '../PageTitle/PageTitle'
 
 function Patient() {
     /** Obtenemos el parametro del url --> /patients/:curp */
-    const {curp} = useParams()
+    const {curp, field, x} = useParams()
     /** Con ese dato lo buscamos de la lista de clientes */
     const data = patients.find(patient => patient.curp === curp)
 
