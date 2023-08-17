@@ -6,6 +6,7 @@ import Patients from "./components/Patients/Patients";
 import Patient from "./components/Patients/Patient";
 import ProductCreate from "./components/Products/ProductCreate";
 import ProductCard from "./components/ProductCard/ProductCard";
+import UseRef from "./components/UseRef/useRef";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         <Route path="/patients/:curp" element={ <Patient /> } />
 
         <Route path="/patients/:curp/:field" ></Route>
+
+        <Route path="/useref" element={ <UseRef /> } ></Route>
 
         <Route path="*" element={ <NotFound /> } />
       </Routes>
