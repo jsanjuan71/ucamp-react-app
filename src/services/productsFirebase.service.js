@@ -1,5 +1,5 @@
 import { db } from "../tools/firebase"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, addDoc } from "firebase/firestore"
 
 const collection_name = "products"
 
@@ -17,13 +17,13 @@ class ProductfirebaseService {
 
     // creamos la accion para visitar el endpoint POST para crear un producto
     static async createProduct(data) {
-        
+        return await addDoc( collection(db, collection_name), data )
     }
 }
 
-const objeto = new ProductfirebaseService()
-objeto.getAllProducts()
+//const objeto = new ProductfirebaseService()
+//objeto.getAllProducts()
 
-ProductfirebaseService.getAllProducts()
+//ProductfirebaseService.getAllProducts()
 
 export default ProductfirebaseService

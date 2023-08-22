@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ProductService from '../../services/products.service';
 import 'react-toastify/dist/ReactToastify.css';
 import PageTitle from '../PageTitle/PageTitle';
+import ProductfirebaseService from '../../services/productsFirebase.service';
 
 {/** Componente para crear un nuevo producto */}
 function ProductCreate() {
@@ -25,34 +26,35 @@ function ProductCreate() {
         */}
         evt.preventDefault()
 
-        {/** Se arma el payload (data a enviar al servicio) */}
+        {/** Se arma el payload (data a enviar al servicio) UUID */}
         const data = {
+            "id": new Date().getTime(),
             "title": title,
             "description": description ,
-            "price": price,
-            "stock": stock
+            "price": parseFloat(price),
+            "stock": parseInt(stock),
+            "createdAt": new Date()
         }
 
-        {/** Llamamos al servicio de crear producto y esperramo respuesta */}
-        ProductService.createProduct(data)
+        ProductfirebaseService.createProduct(data)
             .then( response => {
-                console.log(response)
+                console.log(response.id)
                 {/** evauamos que sea respuesta positiva */}
-                if(response.status == 200) {
+                if(response.id) {
                     toast.success("Producto creado correctamente")
                     {/** Despues de 2 segundos redirigimos automaticamente para productos */}
                     setTimeout( navigate , 3000, "/products" )
                     {/** el hook navigate es como dar clic en un enlace pero sin necesidad de que lo haga el usuario */}
                 } else {
                     {/** Avisamos el error desde el servicio */}
-                    toast.error(response.statusText)
+                    toast.error(response.message)
                 }
             })
             .catch( error => {
-                {/** Avisamos le error interno */}
-                console.error(error)
                 toast.error(error.message)
+                console.log(error)
             } )
+
     }
 
     {/* Cada que un input cambia se invoca a este handler 
