@@ -5,6 +5,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import ProductService from '../../services/products.service'
 import PageTitle from '../PageTitle/PageTitle'
 import Header from '../Header/Header'
+import ProductfirebaseService from '../../services/productsFirebase.service'
 
 function Products() {
 
@@ -14,10 +15,18 @@ function Products() {
     
     {/*** https://legacy.reactjs.org/docs/hooks-effect.html */}
     useEffect( () => {
-        ProductService.getAllProducts()
+        ProductfirebaseService.getAllProducts()
+            .then( response => {
+                console.log("response firebase", response)
+                setProducts( response )
+            })
+            .catch( error => {
+                console.log("error firebase", error)
+            })
+        /*ProductService.getAllProducts()
             .then( response => {
                 setProducts( response.data.result )
-            })
+            }) */
 
         return function () {
             console.log("Se invoca cuando el componente se crea y cuando se destruye")
