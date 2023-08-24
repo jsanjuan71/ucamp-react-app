@@ -1,14 +1,16 @@
 import {initializeApp} from 'firebase/app';
 import {getFirestore} from 'firebase/firestore';
 
+console.log("pi key",  process.env.REACT_APP_FIREBASE_API_KEY);
 
 const firebaseConfig = {
-    apiKey: "AIzaSyClrMn1vt3JPuVc7ggTOeJESxYsPc8jONQ",
-    authDomain: "ucamp-store-firebase.firebaseapp.com",
-    projectId: "ucamp-store-firebase",
-    storageBucket: "ucamp-store-firebase.appspot.com",
-    messagingSenderId: "25276738493",
-    appId: "1:25276738493:web:286524a073d85b96d700d4"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY ,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN ,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID ,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID , 
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
+    
 }
 
 const app = initializeApp(firebaseConfig);
