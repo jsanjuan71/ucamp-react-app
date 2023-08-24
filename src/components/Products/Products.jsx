@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {Row, Col} from 'react-bootstrap'
 import ProductCard from '../ProductCard/ProductCard'
-import ProductService from '../../services/products.service'
 import PageTitle from '../PageTitle/PageTitle'
 import Header from '../Header/Header'
 import ProductfirebaseService from '../../services/productsFirebase.service'
@@ -13,7 +12,7 @@ function Products() {
     
     const navigateTo = useNavigate()
     
-    {/*** https://legacy.reactjs.org/docs/hooks-effect.html */}
+    /*** https://legacy.reactjs.org/docs/hooks-effect.html */
     useEffect( () => {
         ProductfirebaseService.getAllProducts()
             .then( response => {

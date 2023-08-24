@@ -13,7 +13,7 @@ class CalendarInput extends Component { // Definición del componente usando cla
     }
 
     render() { // definimos el metodo render
-        {/** Siempre debemos retornar un unico elemento padre */}
+        /** Siempre debemos retornar un unico elemento padre */
         return <> 
             <hr />
             <label>Seleccione una fecha: </label>
