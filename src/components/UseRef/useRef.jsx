@@ -3,10 +3,6 @@ import { useEffect, useState, useRef } from "react"
 function UseRef() {
     const [inputValue, setInputValue]  = useState('')
     const [segundos, setSegundos] = useState(0)
-
-    const [desde, setDesde] = useState(0)
-    const [hasta, setHasta] = useState(20)
-
     
 
     //pokemons.slice(desde, hasta)

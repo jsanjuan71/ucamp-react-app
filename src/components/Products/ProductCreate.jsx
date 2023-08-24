@@ -2,31 +2,30 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button} from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify';
-import ProductService from '../../services/products.service';
 import 'react-toastify/dist/ReactToastify.css';
 import PageTitle from '../PageTitle/PageTitle';
 import ProductfirebaseService from '../../services/productsFirebase.service';
 
-{/** Componente para crear un nuevo producto */}
+/** Componente para crear un nuevo producto */
 function ProductCreate() {
 
-    {/** Definimos los state */}
+    /** Definimos los state */
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [stock, setStock] = useState('')
 
-    {/** Iniciamos el hook useNavigate */}
+    /** Iniciamos el hook useNavigate */
     const navigate = useNavigate()
 
-    {/** Se invoca cuando se da clic en el boton guardar porque es type submit */}
+    /** Se invoca cuando se da clic en el boton guardar porque es type submit */
     const handleSubmit = (evt) => {
-        {/* esto es para evitar que el Form intente hacer un request a su atributo action
+        /* esto es para evitar que el Form intente hacer un request a su atributo action
           * el cual no ponemos para poder controlar la llamada al servicio
-        */}
+        */
         evt.preventDefault()
 
-        {/** Se arma el payload (data a enviar al servicio) UUID */}
+        /** Se arma el payload (data a enviar al servicio) UUID */
         const data = {
             "id": new Date().getTime(),
             "title": title,
@@ -39,14 +38,14 @@ function ProductCreate() {
         ProductfirebaseService.createProduct(data)
             .then( response => {
                 console.log(response.id)
-                {/** evauamos que sea respuesta positiva */}
+                /** evauamos que sea respuesta positiva */
                 if(response.id) {
                     toast.success("Producto creado correctamente")
-                    {/** Despues de 2 segundos redirigimos automaticamente para productos */}
+                    /** Despues de 2 segundos redirigimos automaticamente para productos */
                     setTimeout( navigate , 3000, "/products" )
-                    {/** el hook navigate es como dar clic en un enlace pero sin necesidad de que lo haga el usuario */}
+                    /** el hook navigate es como dar clic en un enlace pero sin necesidad de que lo haga el usuario */
                 } else {
-                    {/** Avisamos el error desde el servicio */}
+                    /** Avisamos el error desde el servicio */
                     toast.error(response.message)
                 }
             })
@@ -57,9 +56,9 @@ function ProductCreate() {
 
     }
 
-    {/* Cada que un input cambia se invoca a este handler 
+    /* Cada que un input cambia se invoca a este handler 
     * solo se hace el cambio de state con el set correspondiente
-    */}
+    */
     const handleChangeInput = (setter, value) => {
         setter(value)
     }

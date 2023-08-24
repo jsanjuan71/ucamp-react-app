@@ -11,19 +11,6 @@ import Header from '../Header/Header';
 import {Button, Badge} from 'react-bootstrap'
 
 function Home() {
-    var nombre = 'Juan';
-
-    const persona = {
-        nombre: 'Juan',
-        apellido: 'Perez',
-        edad: 35,
-        direccion: {
-        ciudad: 'Bogota',
-        zip: 111111,
-        },
-        licenciaturas: ['Sistemas', 'Aeronautica', 'Matematicas']
-    }
-
     const productos = [
         {
             id: 1,
@@ -71,7 +58,6 @@ function Home() {
     const handleGuttonClick = (evt) => {
         console.log(evt);
         setCurrentYear( currentYear + 1 );
-        nombre = 'Pedro';
         setNombreAlumno('Pedro');
     }
 

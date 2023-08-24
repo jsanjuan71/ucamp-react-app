@@ -1,6 +1,5 @@
 import {Row, Col, ListGroup, Badge} from 'react-bootstrap'
 import { patients } from '../../utils/constants/data'
-import { FaArrowCircleLeft } from 'react-icons/fa'
 import PageTitle from '../PageTitle/PageTitle'
 import Header from '../Header/Header'
 

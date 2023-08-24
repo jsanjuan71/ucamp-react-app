@@ -7,11 +7,6 @@ import PageTitle from '../PageTitle/PageTitle';
 
 function ProductCard( {isQuickView = true, ...props} ) {
 
-    const bgColor = 'lightgrey';
-
-    const estiloTitulo = {
-        backgroundColor: bgColor
-    }
     const {id} = useParams()
     const [product, setProduct] = useState({...props})
 
@@ -19,12 +14,12 @@ function ProductCard( {isQuickView = true, ...props} ) {
       if(!props.id)  {
         ProductService.getAllProducts()
           .then( response => {
-              const prod = response.data.result.filter( prod => prod.id == id )
+              const prod = response.data.result.filter( prod => prod.id === id )
               console.log("prod", prod[0])
               setProduct(prod[0])
         })
       }
-  }, [] )
+  } )
 
     return (
       <>
