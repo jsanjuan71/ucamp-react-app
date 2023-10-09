@@ -19,6 +19,8 @@ function Login() {
     const handleSubmit = (evt) => {
         evt.preventDefault()
 
+        setTermsChecked(false)
+
         const data = {
             "email": email,
             "password": password
@@ -27,6 +29,10 @@ function Login() {
         UsersService.login(data)
             .then( ({data}) => {
                 console.log(data.result)
+                if(data.result ){
+                    toast.success("Success login")
+                    setTimeout(navigate, 3000, "/home")
+                }
             })
             .catch(error => {
                 console.error(error)
