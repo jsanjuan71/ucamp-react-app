@@ -7,6 +7,7 @@ import Patient from "./components/Patients/Patient";
 import ProductCreate from "./components/Products/ProductCreate";
 import ProductCard from "./components/ProductCard/ProductCard";
 import UseRef from "./components/UseRef/useRef";
+import Login from "./components/Login/Login";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ <Home /> } />
+        <Route path="/" element={ <Login /> } />
         <Route path="/contact" element={ <h1>Contacto</h1> } />
         <Route path="/products" element={ <Products />  } />
         <Route path="/products/customize" element={ <ProductCreate /> } />
