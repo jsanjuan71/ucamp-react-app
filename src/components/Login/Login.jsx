@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button} from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageTitle from '../PageTitle/PageTitle';
 import UsersService from '../../services/users.service';
-
+import { UserContext } from '../../context/user.context';
 
 
 function Login() {
@@ -13,6 +13,8 @@ function Login() {
     const [password, setPassword] = useState('')
     const [pageTitle, setPageTitle] = useState('Iniciar sesión')
     const [termsChecked, setTermsChecked] = useState(false)
+
+    const { user, login } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -30,6 +32,7 @@ function Login() {
             .then( ({data}) => {
                 console.log(data.result)
                 if(data.result ){
+                    login(email, data.result)
                     toast.success("Success login")
                     setTimeout(navigate, 3000, "/home")
                 }
@@ -47,6 +50,16 @@ function Login() {
         console.log("value", value)
         setter(value)
     }
+
+    useEffect(() => {
+        console.log("useEffect", user)
+        if(user.token){
+            navigate('/home')
+        }
+        return () => {
+            console.log("useEffect cleanup")
+        }
+    }, [user])
     
    return(
     <div className="App">
