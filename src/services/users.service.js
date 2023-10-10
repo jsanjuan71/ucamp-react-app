@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-const API_URL = "https://ucamp-store-api-last.onrender.com/"
+const API_URL = process.env.REACT_APP_API_URL
 
 const resource = "users"
+
+// /users
 
 class UsersService {
 
@@ -13,11 +15,9 @@ class UsersService {
     static async login({email, password}) {
         return await axios.post( API_URL + resource + "/login", {email, password} )
     }
-
-    // creamos la accion para visitar el endpoint POST para crear un producto
+    
     static async signup(newUserData) {
         return await axios.post( API_URL + resource + "/", newUserData )
-        // http://localhost:3001/products/
     }
 }
 

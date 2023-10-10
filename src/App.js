@@ -7,7 +7,7 @@ import Patient from "./components/Patients/Patient";
 import ProductCreate from "./components/Products/ProductCreate";
 import ProductCard from "./components/ProductCard/ProductCard";
 import UseRef from "./components/UseRef/useRef";
-import Login from "./components/Login/Login";
+import LoginForm from "./components/Forms/LoginForm";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ <Login /> } />
+        <Route path="/" element={ <Home /> } />
         <Route path="/home" element={ <Home /> } />
         <Route path="/contact" element={ <h1>Contacto</h1> } />
         <Route path="/products" element={ <Products />  } />
@@ -24,7 +24,7 @@ function App() {
         {/*<Route path="/products/:sku" element={ <Product /> } /> */}
 
         {/* Ruta para listar todos los pacientes */}
-        <Route path="/patients" element={ <Patients /> } />
+        <Route path="/patients" element={ <LoginForm /> } />
         {/* Ruta para ver un solo paciente usando su curp */}
         <Route path="/patients/:curp" element={ <Patient /> } />
 
