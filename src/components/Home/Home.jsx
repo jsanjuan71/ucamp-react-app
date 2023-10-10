@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import '../../App.css';
 import ProductCard from '../ProductCard/ProductCard';
@@ -7,8 +8,8 @@ import RangeInput from '../inputs/RangeInput/RangeInput';
 import TextInput from '../inputs/TextInput/TextInput';
 import CalendarInput from '../inputs/DateTimePickerInput/CalendarInput';
 import Header from '../Header/Header';
-
 import {Button, Badge} from 'react-bootstrap'
+import { UserContext } from '../../context/user.context'
 
 function Home() {
     const productos = [
@@ -51,6 +52,10 @@ function Home() {
     ]
 
     const [paso, setPaso] = useState(0)
+
+    const { user } = useContext(UserContext)
+
+    const navigate = useNavigate()
     //currentYear = 2024 -> no valido
 
     //setCurrentYear(2024) //-> valido
@@ -64,6 +69,16 @@ function Home() {
     const handleSiguientePaso = () => {
         setPaso( paso + 1 )
     }
+
+    useEffect(() => {
+        console.log("Home", user)
+        if(user.token){
+            navigate('/home')
+        }
+        return () => {
+            console.log("useEffect cleanup")
+        }
+    }, [user])
 
    return(
     <div className="App">
