@@ -1,11 +1,13 @@
 
 
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import {Form, Button, Container, Row, Col} from 'react-bootstrap'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import UsersService from '../../services/users.service'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify'
+import { UserContext } from '../../context/user.context'
+
 
 function LoginForm() {
 
@@ -23,6 +25,8 @@ function LoginForm() {
     const [searchParams] = useSearchParams()
 
     const navigate = useNavigate()
+
+    const { getToken, login } = useContext(UserContext)
 
     const handleEmailChange = ( {target} ) => {
         setEmail(target.value)
@@ -43,6 +47,7 @@ function LoginForm() {
                 console.log("LOGIN done", response.data)
                 toast.success("Acceso correcto")
                 const token = response.data.result
+                login(token)
                 setTimeout( navigate, 3000, '/home' )
 
             })
@@ -57,7 +62,11 @@ function LoginForm() {
         if(searchParams.get('userEmail')){
             setEmail(searchParams.get('userEmail'))
         }
-    }   , [searchParams])
+        console.log("LOGIN", getToken())
+        if(getToken()){
+            navigate('/home')
+        }
+    }   , [searchParams, getToken])
 
     return (
         <>
@@ -76,6 +85,7 @@ function LoginForm() {
                                         value={email}
                                         onChange={handleEmailChange}
                                         required
+                                        autoComplete='on'
                                     />
                                 </FloatingLabel>
                             </Form.Group>
@@ -85,6 +95,7 @@ function LoginForm() {
                                         value={password}
                                         onChange={ ({target}) => setPassword(target.value) }
                                         required
+                                        autoComplete='on'
                                     />
                                 </FloatingLabel>
                             </Form.Group>

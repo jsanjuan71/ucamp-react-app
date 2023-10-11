@@ -1,32 +1,25 @@
-import React, {useState} from "react"
+import React, {useRef, useState} from "react"
 
-const UserContext = React.createContext()
+const UserContext = React.createContext(null)
 
 const {Provider, Consumer} = UserContext
 
 const UserProvider = ({children}) => {
-    const [user, setUser] = useState({
-        email: null,
-        token: null
-    })
+    const token = useRef(null)
     
-    const login = (email, token) => {
-        console.log("Login", email, token)
-        setUser({
-            email,
-            token
-        })
+    const login = (newToken) => {
+        console.log("Login", token)
+        token.current =  newToken
     }
 
     const logout = () => {
-        setUser({
-            email: null,
-            token: null
-        })
-    } 
+        token.current = null
+    }
+
+    const getToken = () => { return token.current }
 
     return (
-        <Provider value={{user, login, logout}}>
+        <Provider value={{getToken, login, logout}}>
             {children}
         </Provider>
     )
