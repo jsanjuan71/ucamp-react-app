@@ -73,7 +73,7 @@ function Home() {
 
     useEffect(() => {
 
-        if(!tokenContext.token){
+        if( !tokenContext.token.length ){
             navigate('/')
         }
 
