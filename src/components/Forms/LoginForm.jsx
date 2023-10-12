@@ -63,7 +63,7 @@ function LoginForm() {
             setEmail(searchParams.get('email'))
         }
 
-        if(tokenContext.token){
+        if( tokenContext.token.length  ){
             navigate('/home')
         }
 
