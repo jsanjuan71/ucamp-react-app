@@ -9,7 +9,8 @@ import TextInput from '../inputs/TextInput/TextInput';
 import CalendarInput from '../inputs/DateTimePickerInput/CalendarInput';
 import Header from '../Header/Header';
 import {Button, Badge} from 'react-bootstrap'
-import { UserContext } from '../../context/user.context'
+import { TokenContext } from '../../providers/TokenContext';
+
 
 function Home() {
     const productos = [
@@ -53,7 +54,7 @@ function Home() {
 
     const [paso, setPaso] = useState(0)
 
-    const { user } = useContext(UserContext)
+    const tokenContext = useContext( TokenContext )
 
     const navigate = useNavigate()
     //currentYear = 2024 -> no valido
@@ -71,14 +72,15 @@ function Home() {
     }
 
     useEffect(() => {
-        console.log("Home", user)
-        if(user.token){
-            navigate('/home')
+
+        if(!tokenContext.token){
+            navigate('/')
         }
+
         return () => {
             console.log("useEffect cleanup")
         }
-    }, [user])
+    }, [tokenContext])
 
    return(
     <div className="App">

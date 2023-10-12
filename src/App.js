@@ -9,34 +9,37 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import UseRef from "./components/UseRef/useRef";
 import LoginForm from "./components/Forms/LoginForm";
 import RegisterForm from "./components/Forms/RegisterForm";
+import { TokenProvider } from "./providers/TokenContext";
 
 
 function App() {
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={ <LoginForm /> } />
-        <Route path="/register" element={ <RegisterForm /> } />
-        <Route path="/home" element={ <Home /> } />
-        <Route path="/contact" element={ <h1>Contacto</h1> } />
-        <Route path="/products" element={ <Products />  } />
-        <Route path="/products/customize" element={ <ProductCreate /> } />
-        <Route path="/products/:id" element={  <ProductCard isQuickView={false} />  } />
-        {/*<Route path="/products/:sku" element={ <Product /> } /> */}
+    <TokenProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={ <LoginForm /> } />
+          <Route path="/register" element={ <RegisterForm /> } />
+          <Route path="/home" element={ <Home /> } />
+          <Route path="/contact" element={ <h1>Contacto</h1> } />
+          <Route path="/products" element={ <Products />  } />
+          <Route path="/products/customize" element={ <ProductCreate /> } />
+          <Route path="/products/:id" element={  <ProductCard isQuickView={false} />  } />
+          {/*<Route path="/products/:sku" element={ <Product /> } /> */}
 
-        {/* Ruta para listar todos los pacientes */}
-        <Route path="/patients" element={ <Patients /> } />
-        {/* Ruta para ver un solo paciente usando su curp */}
-        <Route path="/patients/:curp" element={ <Patient /> } />
+          {/* Ruta para listar todos los pacientes */}
+          <Route path="/patients" element={ <Patients /> } />
+          {/* Ruta para ver un solo paciente usando su curp */}
+          <Route path="/patients/:curp" element={ <Patient /> } />
 
-        <Route path="/patients/:curp/:field" ></Route>
+          <Route path="/patients/:curp/:field" ></Route>
 
-        <Route path="/useref" element={ <UseRef /> } ></Route>
+          <Route path="/useref" element={ <UseRef /> } ></Route>
 
-        <Route path="*" element={ <NotFound /> } />
-      </Routes>
-    </Router>
+          <Route path="*" element={ <NotFound /> } />
+        </Routes>
+      </Router>
+    </TokenProvider>
   );
 }
 

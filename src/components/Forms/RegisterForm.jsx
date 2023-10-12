@@ -45,7 +45,7 @@ function RegisterForm() {
             .then(response => {
                 console.log("REGISTER done", response.data)
                 toast.success("Usuario registrado correctamente")
-                setTimeout( navigate, 3000, '/?userEmail='+ email  )
+                setTimeout( navigate, 3000, '/?email='+ email  )
             })
             .catch(err => {
                 console.log("REGISTER error", err.response.data.error)
