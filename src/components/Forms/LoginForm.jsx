@@ -26,7 +26,7 @@ function LoginForm() {
 
     const navigate = useNavigate()
 
-    const { getToken, login } = useContext(UserContext)
+    const { token, login } = useContext(UserContext)
 
     const handleEmailChange = ( {target} ) => {
         setEmail(target.value)
@@ -46,8 +46,8 @@ function LoginForm() {
             .then(response => {
                 console.log("LOGIN done", response.data)
                 toast.success("Acceso correcto")
-                const token = response.data.result
-                login(token)
+                const newToken = response.data.result
+                login(newToken)
                 setTimeout( navigate, 3000, '/home' )
 
             })
@@ -62,11 +62,11 @@ function LoginForm() {
         if(searchParams.get('userEmail')){
             setEmail(searchParams.get('userEmail'))
         }
-        console.log("LOGIN", getToken())
-        if(getToken()){
+        console.log("LOGIN", token)
+        if(token){
             navigate('/home')
         }
-    }   , [searchParams, getToken])
+    }   , [searchParams, token])
 
     return (
         <>

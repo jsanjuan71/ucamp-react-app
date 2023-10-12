@@ -53,7 +53,7 @@ function Home() {
 
     const [paso, setPaso] = useState(0)
 
-    const { getToken } = useContext(UserContext)
+    const { token } = useContext(UserContext)
 
     const navigate = useNavigate()
     //currentYear = 2024 -> no valido
@@ -71,14 +71,14 @@ function Home() {
     }
 
     useEffect(() => {
-        console.log("Home", getToken())
-        if(!getToken()){
+        console.log("Home", token)
+        if(!token){
             navigate('/')
         }
         return () => {
             console.log("useEffect cleanup")
         }
-    }, [getToken, navigate])
+    }, [token, navigate])
 
    return(
     <div className="App">

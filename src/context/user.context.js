@@ -1,28 +1,23 @@
-import React, {useRef, useState} from "react"
+import { useState, createContext, useEffect } from 'react';
 
-const UserContext = React.createContext(null)
+const UserContext = createContext();
 
-const {Provider, Consumer} = UserContext
+function UserProvider({ children }) {
+  const [token, setToken] = useState( () => window.localStorage.getItem('token') || null )
 
-const UserProvider = ({children}) => {
-    const token = useRef(null)
-    
-    const login = (newToken) => {
-        console.log("Login", token)
-        token.current =  newToken
-    }
+  useEffect( () => {    
+    window.localStorage.setItem('token', token);
+  }, [token])
 
-    const logout = () => {
-        token.current = null
-    }
+  const login = (newToken) => setToken(newToken)
 
-    const getToken = () => { return token.current }
+  const logout = () => setToken(null)
 
-    return (
-        <Provider value={{getToken, login, logout}}>
-            {children}
-        </Provider>
-    )
+  return (
+    <UserContext.Provider value={{ token, login, logout }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 
-export {UserProvider, Consumer as UserConsumer, UserContext}
+export { UserContext, UserProvider }
