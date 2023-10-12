@@ -1,11 +1,12 @@
 
 
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import {Form, Button, Container, Row, Col} from 'react-bootstrap'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import UsersService from '../../services/users.service'
 import { ToastContainer, toast } from 'react-toastify';
+import { TokenContext } from '../../providers/TokenContext';
 
 function LoginForm() {
 
@@ -19,6 +20,8 @@ function LoginForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [aintRobot, setAintRobot] = useState(false)
+
+    const tokenContext = useContext( TokenContext )
 
     const [searchParams] = useSearchParams()
 
@@ -43,6 +46,8 @@ function LoginForm() {
                 console.log("LOGIN done", response.data)
                 toast.success("Acceso correcto")
                 const token = response.data.result
+                //setToken(token)
+                tokenContext.setToken(token)
                 setTimeout( navigate, 3000, '/home' )
 
             })
@@ -54,10 +59,16 @@ function LoginForm() {
     }
 
     useEffect(() => {  
-        if(searchParams.get('userEmail')){
-            setEmail(searchParams.get('userEmail'))
+        if(searchParams.get('email')){
+            setEmail(searchParams.get('email'))
         }
-    }   , [searchParams])
+
+        if(tokenContext.token){
+            navigate('/home')
+        }
+
+
+    }   , [searchParams, tokenContext])
 
     return (
         <>
