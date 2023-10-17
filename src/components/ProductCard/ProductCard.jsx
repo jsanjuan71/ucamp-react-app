@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom';
 import {Button, Card, Badge} from 'react-bootstrap'
 import ProductService from '../../services/products.service';
 import PageTitle from '../PageTitle/PageTitle';
+import { CartContext } from '../../providers/CartContext';
+
 
 
 function ProductCard( {isQuickView = true, ...props} ) {
 
     const {id} = useParams()
     const [product, setProduct] = useState({...props})
+
+    const { addProductToCart } = useContext( CartContext )
 
     useEffect( () => {
       if(!props.id)  {
@@ -19,7 +23,7 @@ function ProductCard( {isQuickView = true, ...props} ) {
               setProduct(prod[0])
         })
       }
-  } )
+    }, [] )
 
     return (
       <>
@@ -46,7 +50,7 @@ function ProductCard( {isQuickView = true, ...props} ) {
             </p>
             <p>${product.price?.toFixed(2)} MXN</p>
             <hr />
-            <Button variant='success' >Agregar</Button>
+            <Button variant='success' onClick={ () => addProductToCart(product) } >Agregar</Button>
           </Card.Body>
         </Card>
       </>
