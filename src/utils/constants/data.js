@@ -20,4 +20,7 @@ const patients = [
     }
 ]
 
-export {patients}
+const IVA = 0.16
+
+export {patients, IVA}
+
