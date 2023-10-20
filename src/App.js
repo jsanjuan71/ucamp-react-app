@@ -12,6 +12,7 @@ import RegisterForm from "./components/Forms/RegisterForm";
 import { TokenProvider } from "./providers/TokenContext";
 import { CartProvider } from "./providers/CartContext";
 import Cart from "./components/Cart/Cart";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 
 function App() {
@@ -28,7 +29,11 @@ function App() {
             <Route path="/products" element={ <Products />  } />
             <Route path="/products/customize" element={ <ProductCreate /> } />
             <Route path="/products/:id" element={  <ProductCard isQuickView={false} />  } />
-            <Route path="/cart/list" element={  <Cart />  } />
+            <Route path="/cart/list" element={
+              <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID, currency:"MXN" } }>  
+                <Cart />
+              </PayPalScriptProvider>
+            } />
             {/*<Route path="/products/:sku" element={ <Product /> } /> */}
 
             {/* Ruta para listar todos los pacientes */}

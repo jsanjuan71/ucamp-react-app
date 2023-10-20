@@ -35,11 +35,17 @@ function CartProvider({children}) {
             cart.total += 1 // aumentar el total de productos
         }
 
+        var frutas = ["Banana", "Orange", "Apple", "Mango"];
+
+        frutas[1] = "Kiwi"
+
         // aumentar el total a pagar
         cart.amount += product.price
 
         // actualizar el estado del carrito, el hook useEffect se encarga de actualizar el localStorage
         setCart( {...cart} )
+
+        //setCart( {items: cart.items, total: cart.total, amount: cart.amout} )
     }
 
     // Eliminar un producto del carrito
