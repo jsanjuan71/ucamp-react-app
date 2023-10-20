@@ -26,7 +26,7 @@ function CartItem({item}) {
                 {item.description && item.description.length? (
                         item.description
                     ): (
-                        <Alert variant='secondary'>No hay descripción</Alert>
+                        <Alert variant='warning'>No hay descripción</Alert>
                     )
                 }
             </Col>
