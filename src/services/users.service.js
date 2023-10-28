@@ -19,6 +19,17 @@ class UsersService {
     static async signup(newUserData) {
         return await axios.post( API_URL + resource + "/", newUserData )
     }
+
+    static async getAccountInfo() {
+        const token = localStorage.getItem("token")
+        if( !token ) throw new Error("No token provided")
+
+        return await axios.get( API_URL + resource + "/me", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        } )
+    }
 }
 
 export default UsersService

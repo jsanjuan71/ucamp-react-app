@@ -13,6 +13,9 @@ import { TokenProvider } from "./providers/TokenContext";
 import { CartProvider } from "./providers/CartContext";
 import Cart from "./components/Cart/Cart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PostPublic from "./components/Post/PostPublic";
+import PostMe from "./components/Post/PostMe";
+import Account from "./components/Account/Account";
 
 
 function App() {
@@ -44,6 +47,12 @@ function App() {
             <Route path="/patients/:curp/:field" ></Route>
 
             <Route path="/useref" element={ <UseRef /> } ></Route>
+
+            <Route path="/blog" element={ <PostPublic /> } ></Route>
+
+            <Route path="/blog/me" element={ <PostMe /> } ></Route>
+
+            <Route path="/account" element={ <Account /> } ></Route>
 
             <Route path="*" element={ <NotFound /> } />
           </Routes>
